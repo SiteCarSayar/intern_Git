@@ -10,8 +10,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class SaveuserComponent implements OnInit {
 
-  id!: number;
-  newrecord: boolean = false;
+  newrecord: boolean = true;
   user: User = new User();
 
   constructor(
@@ -21,23 +20,26 @@ export class SaveuserComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.newrecord=true;
-    this.id = Number(this.router.url.split('/').pop());
-    window.alert("User hello: " + this.id);
-    if (this.id) {
-      this.userService.getUserById(this.id).subscribe((response: any) => {
+   
+     const id = Number(this.router.url.split('/').pop());
+    if (id) {
+      this.newrecord = false;
+      this.userService.getUserById(id).subscribe((response: any) => {
         if (response.status) {
           this.user = response.data;
-        } else {
-          window.alert("User not found");
-          this.router.navigate(['/users']);
+          this.newrecord = false;
+          this.findById(id);
         }
       });
-    } else {
-      window.alert("Invalid user ID");
-      this.router.navigate(['/users']);
-    }
-
+  }
+   }
+   findById(id: number) {
+    this.userService.getUserById(id).subscribe((response: any) => {
+      if (response.status) {
+        this.user = response.data;
+      } else
+        window.alert(response.message);
+    });
   }
 
   save() {
@@ -58,7 +60,7 @@ export class SaveuserComponent implements OnInit {
   edit() {
     if (!this.user.id) {
       window.alert("User ID Invalid.");
-      return;
+        return;
     }
 
     this.userService.editUser(this.user).subscribe((response: any) => {

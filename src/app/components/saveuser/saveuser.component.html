@@ -1,8 +1,8 @@
 <div class="container mt-4">
   <div class="card shadow">
     <div class="card-header bg-primary text-white">
-      <h5 class="mb-0" *ngIf="!newrecord">User Information</h5>
-      <h5 class="mb-0" *ngIf="newrecord">Edit User Information</h5>
+      <h5 class="mb-0" *ngIf="newrecord">ADD User Information</h5>
+      <h5 class="mb-0" *ngIf="!newrecord">Edit User Information</h5>
     </div>
     <div class="card-body">
 
@@ -27,9 +27,9 @@
       <div class="row mb-3 align-items-center">
         <label for="inputPassword" class="col-sm-2 col-form-label fw-bold">Password</label>
         <div class="col-sm-6">
-          <input type="password" class="form-control" *ngIf="!newrecord" [(ngModel)]="user.password" id="inputPassword" name="password"
+          <input type="password" class="form-control" *ngIf="newrecord" [(ngModel)]="user.password" id="inputPassword" name="password"
             placeholder="Password" />
-            <input type="text" *ngIf="newrecord"  class="form-control" [(ngModel)]="user.password" id="inputPassword" name="password" />
+            <input type="text" *ngIf="!newrecord"  class="form-control" [(ngModel)]="user.password" id="inputPassword" name="password" />
 
         </div>
       </div>
@@ -46,8 +46,8 @@
       <!-- Buttons -->
       <div class="row">
         <div class="col-sm-8 offset-sm-2 text-end">
-          <button type="button" class="btn btn-success me-2" *ngIf="!newrecord" (click)="save()">Submit</button>
-          <button type="button" class="btn btn-primary me-2" *ngIf="newrecord" (click)="edit()">Edit</button>
+          <button type="button" class="btn btn-success me-2" *ngIf="newrecord" (click)="save()">Submit</button>
+          <button type="button" class="btn btn-primary me-2" *ngIf="!newrecord" (click)="edit()">Edit</button>
           <button type="reset" class="btn btn-secondary" [routerLink]="'/users'">Cancel</button>
         </div>
       </div>

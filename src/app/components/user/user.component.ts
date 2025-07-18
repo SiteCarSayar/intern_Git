@@ -20,6 +20,7 @@ newrecord: boolean = false;
 
   ngOnInit(): void {
     this.getAllUsers();
+    
 
   }
 
@@ -34,7 +35,9 @@ newrecord: boolean = false;
       }
       
     });
+
   }
+  
   editUser(id: number) {
     this.router.navigate(['/user/create-user', id]);
   }
@@ -50,6 +53,7 @@ newrecord: boolean = false;
       });
     }
   }
+  
 
 
 }
